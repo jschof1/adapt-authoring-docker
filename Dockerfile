@@ -24,9 +24,11 @@ WORKDIR /adapt_authoring
 
 RUN npm install --production
 
-EXPOSE 5000
+EXPOSE 2000
 
-COPY docker-entrypoint.sh /
+COPY docker-entrypoint.sh /usr/local/bin/
 
-ENTRYPOINT ["/docker-entrypoint.sh"]
+RUN chmod +x /usr/local/bin/docker-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["node", "server"]
